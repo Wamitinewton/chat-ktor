@@ -4,6 +4,7 @@ import com.example.room.MemberAlreadyExists
 import com.example.room.RoomController
 import com.example.session.ChatSession
 import io.ktor.http.*
+import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
@@ -40,5 +41,13 @@ fun Route.chatSocket(roomController: RoomController) {
             roomController.tryDisconnect(session.userName)
         }
 
+    }
+}
+fun Route.getAllMessages(roomController: RoomController) {
+    get("/messages") {
+        call.respond(
+            HttpStatusCode.OK,
+            roomController.getAllMessages()
+        )
     }
 }
