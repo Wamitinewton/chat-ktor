@@ -25,7 +25,7 @@ class RoomController(
         )
     }
 
-    fun sendMessage(sendUsername:String, message: String){
+    suspend fun sendMessage(sendUsername:String, message: String){
         members.values.forEach {member ->
             val messageEntity = Message(
                 text = message,
